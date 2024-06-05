@@ -1,0 +1,6 @@
+.display-container {
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

@@ -1,0 +1,20 @@
+.container {
+  background-color: aqua;
+  width: 50rem;
+  height: 30rem;
+  margin-top: 10rem;
+  align-content: center;
+  justify-content: center;
+}
+
+.random-outfit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: blueviolet;
+}
+.clothing-item {
+  height: 5rem;
+  width: 5rem;
+  background-color: blanchedalmond;
+}

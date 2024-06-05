@@ -1,0 +1,10 @@
+.sidebar {
+  background-color: black;
+  width: 15%;
+  padding: 1rem;
+}
+
+.sidebar > h1 {
+  background-color: black;
+  color: white;
+}
