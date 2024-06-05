@@ -1,6 +1,10 @@
-const mongoose = require('./index.js');
+'use strict';
 
-const imageSchema = mongoose.Schema({
+const mongoose = require('./');
+
+const Schema = mongoose.Schema;
+
+const imageSchema = new Schema({
   item: {
     type: String,
     required: true,
@@ -19,3 +23,7 @@ const imageSchema = mongoose.Schema({
     required: true,
   },
 });
+
+const Image = mongoose.model('Image', imageSchema);
+
+module.exports = Image;
