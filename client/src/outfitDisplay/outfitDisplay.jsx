@@ -5,9 +5,9 @@ function OutfitDisplay() {
     <>
       <div className="container">
         <div className="random-outfit">
-          <div className="top clothing-item"></div>
-          <div className="bottom clothing-item"></div>
-          <div className="shoe clothing-item"></div>
+          <div className="top clothing-item">top</div>
+          <div className="bottom clothing-item">bottom</div>
+          <div className="shoe clothing-item">shoe</div>
         </div>
       </div>
     </>

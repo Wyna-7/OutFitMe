@@ -1,8 +1,8 @@
 .container {
   background-color: aqua;
-  width: 50rem;
-  height: 30rem;
-  margin-top: 10rem;
+  width: 55rem;
+  height: 35rem;
+  margin-top: 15rem;
   align-content: center;
   justify-content: center;
 }
@@ -14,7 +14,8 @@
   background-color: blueviolet;
 }
 .clothing-item {
-  height: 5rem;
-  width: 5rem;
+  height: 13rem;
+  width: 13rem;
   background-color: blanchedalmond;
+  color: black;
 }

@@ -1,10 +1,26 @@
 .sidebar {
   background-color: black;
   width: 15%;
+  height: 100%;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .sidebar > h1 {
   background-color: black;
   color: white;
+  margin-bottom: 5rem;
+}
+
+.clothing-sections {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-bottom: 10rem;
+}
+button {
+  font-size: 2rem;
+  margin-bottom: 7rem;
 }

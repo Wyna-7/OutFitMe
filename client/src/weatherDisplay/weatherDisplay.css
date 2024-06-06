@@ -1,0 +1,30 @@
+.weather-container {
+  background-color: aqua;
+  width: 30rem;
+  height: 35rem;
+  margin-top: 15rem;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
+  padding: 3rem;
+}
+
+.apidata {
+  background-color: aqua;
+  display: flex;
+  justify-content: center;
+}
+
+.emoji {
+  font-size: 12rem;
+  color: orange;
+}
+
+.top-data {
+  font-size: 2.5rem;
+}
+
+.center-data {
+  font-size: 1.5rem;
+}
