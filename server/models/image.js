@@ -9,7 +9,7 @@ const imageSchema = new Schema({
     type: String,
     required: true,
   },
-  /*item: {
+  item: {
     type: String,
     required: true,
   },
@@ -20,7 +20,7 @@ const imageSchema = new Schema({
   rain: {
     type: Boolean,
     required: true,
-  },*/
+  },
 });
 
 const Image = mongoose.model('Image', imageSchema);

@@ -1,12 +1,15 @@
 import './App.css';
 import Sidebar from './sidebar/sidebar';
 import DisplayContainer from './displayContainer';
-
-// const cloudinaryURL =
-//   'CLOUDINARY_URL=cloudinary://415833537923217:fo8J51F2h2_7arUMgvsEpKYFJ24@dmsktnqsm';
-// const cloudinaryPreset = 'ae3caiip';
+import { Cloudinary } from '@cloudinary/url-gen';
 
 function App() {
+  const cld = new Cloudinary({
+    cloud: {
+      cloudName: import.meta.env.VITE_CLOUD_NAME,
+    },
+  });
+
   return (
     <>
       <div className="app-container">
