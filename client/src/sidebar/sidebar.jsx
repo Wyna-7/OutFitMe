@@ -6,8 +6,20 @@ import {
   PiHeartStraight,
   PiPlusCircle,
 } from 'react-icons/pi';
+import { useState } from 'react';
+import UploadModal from './uploadModal';
 
 function Sidebar() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddItemClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <div className="sidebar">
@@ -26,11 +38,11 @@ function Sidebar() {
         <button className="like">
           <PiHeartStraight />
         </button>
-        <button className="add-item">
-          {' '}
+        <button className="add-item" onClick={handleAddItemClick}>
           {/* onClick open modal/cloudinary widget */}
           <PiPlusCircle />
         </button>
+        {isModalOpen && <UploadModal onClose={handleCloseModal} />}
       </div>
     </>
   );

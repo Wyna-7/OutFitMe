@@ -2,7 +2,13 @@
 
 const Koa = require('koa');
 const app = new Koa();
+const bodyParser = require('koa-bodyparser');
 const { PORT } = require('./config');
+const router = require('./router');
+
+app.use(bodyParser());
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.use(async (ctx, next) => {
   await next();
