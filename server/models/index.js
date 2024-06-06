@@ -7,7 +7,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log(`Succesfully connected to ${DB_NAME} on port ${DB_PORT}!`);
+    console.log(`🎃 Succesfully connected to ${DB_NAME} on port ${DB_PORT}!`);
   })
   .catch((error) => {
     console.log(`Something went wrong! ${error}`);

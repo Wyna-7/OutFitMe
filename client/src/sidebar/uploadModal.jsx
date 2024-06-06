@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { addImage } from '../apiService';
 import './uploadModal.css';
 
 const UploadModal = ({ onClose }) => {
@@ -14,24 +15,33 @@ const UploadModal = ({ onClose }) => {
 
   const [image, setImage] = useState('placeholder');
 
+  let resURL = '';
+
+  useEffect(() => {
+    setFormData((formData) => ({
+      //TODO figure out how to get it set before using addImage!!!
+      ...formData,
+      imgURL: resURL,
+    }));
+    console.log('formData in first useEffect', formData);
+  }, []);
+
+  useEffect(() => {
+    console.log('formData in second useEffect', formData);
+    addImage(formData);
+  }, [formData.imgURL]);
+
   const handleChange = (event) => {
     let { name, value } = event.target;
-    console.log('before', formData);
+
     if (name === 'rain') {
       value = value === 'true';
     }
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-
-    console.log('after', formData);
   };
 
   const handleFileChange = (event) => {
-    console.log(event);
-    console.log('before', image);
-    const nextImg = event.target.files[0];
-    setImage(nextImg);
-
-    console.log('after', image);
+    setImage(event.target.files[0]);
   };
 
   const handleUpload = async (event) => {
@@ -50,12 +60,10 @@ const UploadModal = ({ onClose }) => {
       };
       const response = await fetch(url, options).then((res) => res.json()); //just needed to parse the response body :-)
 
-      const resURL = response.secure_url;
+      resURL = response.secure_url;
+      console.log('formData from modal', resURL);
 
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        imgURL: resURL,
-      }));
+      console.log('data from modal', formData);
 
       onClose(); // Close the modal after uploading
     } catch (error) {
