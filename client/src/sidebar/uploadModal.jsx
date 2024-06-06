@@ -41,26 +41,22 @@ const UploadModal = ({ onClose }) => {
       const fd = new FormData();
       fd.append('file', image);
       fd.append('upload_preset', uploadPreset);
-      fd.append('resorce_type', 'image'); //logged this and fd has all info needed
+      fd.append('resorce_type', 'image');
 
       const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
       const options = {
         method: 'POST',
         body: fd,
       };
-      const response = await fetch(url, options);
-      console.log('response', response); // returns 200 when logged
-      if (!response.ok) {
-        throw new Error('Failed to execute file upload via the Fetch API');
-      }
+      const response = await fetch(url, options).then((res) => res.json()); //just needed to parse the response body :-)
 
-      const resURL = response.data.secure_url; //this does not work, secure_url is not in there
-      console.log('resURL', resURL);
+      const resURL = response.secure_url;
+
       setFormData((prevFormData) => ({
         ...prevFormData,
         imgURL: resURL,
       }));
-      console.log('file uploaded!');
+
       onClose(); // Close the modal after uploading
     } catch (error) {
       console.error('Upload failed', error);
