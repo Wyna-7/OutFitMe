@@ -11,7 +11,7 @@ function Sidebar() {
   return (
     <>
       <div className="sidebar">
-        <h1>OutFitMe</h1>
+        <h1>OutFitMe</h1> {/* This will just be static */}
         <div className="clothing-sections">
           <button>
             <PiTShirt />
@@ -27,6 +27,8 @@ function Sidebar() {
           <PiHeartStraight />
         </button>
         <button className="add-item">
+          {' '}
+          {/* onClick open modal/cloudinary widget */}
           <PiPlusCircle />
         </button>
       </div>
