@@ -1,6 +1,6 @@
 .sidebar {
   background-color: black;
-  width: 15%;
+  width: 12%;
   height: 100%;
   padding: 1rem;
   display: flex;
@@ -14,14 +14,28 @@
   margin-bottom: 5rem;
 }
 
+.all-icons {
+  background-color: black;
+  margin-left: 3rem;
+}
+
 .clothing-sections {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  margin-bottom: 10rem;
+  background-color: black;
 }
+
+.react-icons {
+  background-color: black;
+  color: white;
+}
+
 button {
   font-size: 2rem;
   margin-bottom: 7rem;
   cursor: pointer;
+  align-self: center;
+  background-color: black;
+  border: none;
 }

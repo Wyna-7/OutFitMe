@@ -5,6 +5,8 @@ import {
   PiSneaker,
   PiHeartStraight,
   PiPlusCircle,
+  PiCubeTransparent,
+  PiSelectionBackground,
 } from 'react-icons/pi';
 import { useState } from 'react';
 import UploadModal from '../uploadModal/uploadModal';
@@ -24,25 +26,26 @@ function Sidebar() {
     <>
       <div className="sidebar">
         <h1>OutFitMe</h1> {/* This will just be static */}
-        <div className="clothing-sections">
+        <div className="all-icons">
           <button>
-            <PiTShirt />
+            <PiTShirt style={{ color: 'white', background: 'black' }} />
           </button>
           <button>
-            <PiPants />
+            <PiPants style={{ color: 'white', background: 'black' }} />
           </button>
           <button>
-            <PiSneaker />
+            <PiSneaker style={{ color: 'white', background: 'black' }} />
           </button>
+
+          <button className="like">
+            <PiHeartStraight style={{ color: 'white', background: 'black' }} />
+          </button>
+          <button className="add-item" onClick={handleAddItemClick}>
+            {/* onClick open modal/cloudinary widget */}
+            <PiPlusCircle style={{ color: 'white', background: 'black' }} />
+          </button>
+          {isModalOpen && <UploadModal onClose={handleCloseModal} />}
         </div>
-        <button className="like">
-          <PiHeartStraight />
-        </button>
-        <button className="add-item" onClick={handleAddItemClick}>
-          {/* onClick open modal/cloudinary widget */}
-          <PiPlusCircle />
-        </button>
-        {isModalOpen && <UploadModal onClose={handleCloseModal} />}
       </div>
     </>
   );
