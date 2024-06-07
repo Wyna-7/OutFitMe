@@ -1,15 +1,9 @@
 import './App.css';
 import Sidebar from './sidebar/sidebar';
 import DisplayContainer from './displayContainer';
-import { Cloudinary } from '@cloudinary/url-gen';
+//import { useEffect, useState } from 'react';
 
 function App() {
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: import.meta.env.VITE_CLOUD_NAME,
-    },
-  });
-
   return (
     <>
       <div className="app-container">

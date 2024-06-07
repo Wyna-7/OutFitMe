@@ -1,6 +1,36 @@
 import './weatherDisplay.css';
+import { useEffect, useState } from 'react';
+import { getWeatherData } from '../apiService';
 
 function WeatherDisplay() {
+  const [lat, setLat] = useState('');
+  const [lon, setLon] = useState('');
+
+  useEffect(() => {
+    if (lat === '' || lon === '') {
+      return;
+    }
+    //apiService method for weather should send lat and lon as arguments to add to the url
+
+    console.log('---- in useEffect', lat, lon);
+    getWeatherData(
+      Number.parseFloat(lat).toFixed(2),
+      Number.parseFloat(lon).toFixed(2)
+    );
+  });
+
+  const getLocation = () => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+        //this works, checked setStates w Vic's trick
+      });
+    } else {
+      alert('Please enable geolocation to use this app.');
+    }
+  };
+
   return (
     <>
       <div className="weather-container">
@@ -15,6 +45,7 @@ function WeatherDisplay() {
         </div>
 
         <div className="emoji apidata">☀</div>
+        <button onClick={getLocation}>Get my weather!</button>
       </div>
     </>
   );
