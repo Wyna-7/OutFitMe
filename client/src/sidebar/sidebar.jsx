@@ -5,8 +5,6 @@ import {
   PiSneaker,
   PiHeartStraight,
   PiPlusCircle,
-  PiCubeTransparent,
-  PiSelectionBackground,
 } from 'react-icons/pi';
 import { useState } from 'react';
 import UploadModal from '../uploadModal/uploadModal';

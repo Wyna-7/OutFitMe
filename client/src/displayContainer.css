@@ -4,3 +4,12 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+button {
+  font-size: 2rem;
+  margin-bottom: 7rem;
+  cursor: pointer;
+  align-self: center;
+  padding: 3px;
+  background-color: rgb(139, 136, 136);
+}

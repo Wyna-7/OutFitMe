@@ -1,9 +1,80 @@
 import './App.css';
+import { useState, useEffect } from 'react';
 import Sidebar from './sidebar/sidebar';
 import DisplayContainer from './displayContainer';
-//import { useEffect, useState } from 'react';
+import { getWeatherData } from './apiService';
 
 function App() {
+  const [weatherData, setWeatherData] = useState({
+    location: '',
+    temp: '',
+    temp_max: '',
+    temp_min: '',
+    humidity: '',
+    feels_like: '',
+    description: '',
+  });
+
+  const [emoji, setEmoji] = useState('');
+
+  useEffect(() => {
+    if (weatherData.description === '') return;
+
+    //console.log('effect', weatherData.description);
+
+    switch (
+      weatherData.description //TODO Replace with not-so-ugly icons
+    ) {
+      case 'Thunderstorm':
+        setEmoji('⛈');
+      case 'Drizzle':
+        setEmoji('🌧');
+      case 'Rain':
+        setEmoji('🌧');
+      case 'Snow':
+        setEmoji('🌨');
+      case 'Clouds':
+        setEmoji('⛅');
+      case 'Clear':
+        setEmoji('☀');
+    }
+  }, [weatherData.description]);
+
+  const getLocation = () => {
+    console.log('hi');
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        console.log('coords', lat, lon);
+        getWeather(lat, lon);
+      });
+    } else {
+      alert('Please enable geolocation to use this app.'); //maybe try sweetalert2?  https://sweetalert2.github.io/
+    }
+  };
+
+  const getWeather = (lat, lon) => {
+    //apiService method for weather should send lat and lon as arguments to add to the url
+    getWeatherData(lat, lon).then((weatherData) => {
+      //console.log('------', weatherData); //is the data in the component?
+      const {
+        name: location,
+        main: { temp, humidity, feels_like, temp_max, temp_min },
+        weather: [{ main }],
+      } = weatherData;
+      setWeatherData({
+        location: location,
+        temp: temp,
+        temp_max: temp_max,
+        temp_min: temp_min,
+        humidity: humidity,
+        feels_like: feels_like,
+        description: main,
+      });
+    });
+  };
+
   return (
     <>
       <div className="app-container">
@@ -40,7 +111,11 @@ function App() {
           - see liked outfits gallery
         */}
         <div className="display-container">
-          <DisplayContainer />
+          <DisplayContainer
+            getLocation={getLocation}
+            weatherData={weatherData}
+            emoji={emoji}
+          />
         </div>
       </div>
     </>
