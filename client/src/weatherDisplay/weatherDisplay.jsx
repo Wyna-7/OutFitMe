@@ -18,7 +18,7 @@ function WeatherDisplay() {
   useEffect(() => {
     if (weatherData.description === '') return;
 
-    console.log('effect', weatherData.description);
+    //console.log('effect', weatherData.description);
 
     switch (
       weatherData.description //TODO Replace with not-so-ugly icons
@@ -46,7 +46,7 @@ function WeatherDisplay() {
 
         //apiService method for weather should send lat and lon as arguments to add to the url
         getWeatherData(lat, lon).then((weatherData) => {
-          console.log('------', weatherData); //is the data in the component?
+          //console.log('------', weatherData); //is the data in the component?
           const {
             name: location,
             main: { temp, humidity, feels_like, temp_max, temp_min },
@@ -64,7 +64,7 @@ function WeatherDisplay() {
         });
       });
     } else {
-      alert('Please enable geolocation to use this app.');
+      alert('Please enable geolocation to use this app.'); //maybe try sweetalert2?  https://sweetalert2.github.io/
     }
   };
 

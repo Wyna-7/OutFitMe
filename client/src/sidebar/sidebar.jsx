@@ -7,7 +7,7 @@ import {
   PiPlusCircle,
 } from 'react-icons/pi';
 import { useState } from 'react';
-import UploadModal from './uploadModal';
+import UploadModal from '../uploadModal/uploadModal';
 
 function Sidebar() {
   const [isModalOpen, setIsModalOpen] = useState(false);

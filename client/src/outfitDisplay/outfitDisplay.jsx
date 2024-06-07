@@ -1,14 +1,32 @@
+import { useState } from 'react';
 import './outfitDisplay.css';
 
 function OutfitDisplay() {
+  const [outfit, setOutfit] = useState({
+    top: '',
+    bottom: '',
+    shoe: '',
+  });
+
+  const generateOutfit = async (event) => {
+    // get random imgURL from a clothing item that matches weather stats
+    // set random imgURL as src for the corresponding image
+    setOutfit({
+      top: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768634/outfitme/quh8ru1npxxqonxd00dd.png',
+      bottom: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768618/outfitme/ying1vo5thpccitaqqwg.png',   images render ok on page, may need to transform size when uploading to cloudinary
+      shoe: '', //https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768651/outfitme/ducoo4588tycomxyaaaz.png',
+    });
+  };
+
   return (
     <>
       <div className="container">
         <div className="random-outfit">
-          <div className="top clothing-item">top</div>
-          <div className="bottom clothing-item">bottom</div>
-          <div className="shoe clothing-item">shoe</div>
+          <img className="top clothing-item" src={outfit.top}></img>
+          <img className="bottom clothing-item" src={outfit.bottom}></img>
+          <img className="shoe clothing-item" src={outfit.shoe}></img>
         </div>
+        <button onClick={generateOutfit}>Generate outfit!</button>
       </div>
     </>
   );
