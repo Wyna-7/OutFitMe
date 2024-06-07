@@ -7,14 +7,18 @@ const Schema = mongoose.Schema;
 const imageSchema = new Schema({
   imgURL: {
     type: String,
+    lowercase: true,
+    unique: true,
     required: true,
   },
   item: {
     type: String,
+    lowercase: true,
     required: true,
   },
   tempRange: {
     type: String,
+    lowercase: true,
     required: true,
   },
   rain: {

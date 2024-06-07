@@ -5,7 +5,7 @@ import './uploadModal.css';
 const UploadModal = ({ onClose }) => {
   const cloudName = import.meta.env.VITE_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
-
+  const folder = import.meta.env.VITE_CLOUDINARY_FOLDER;
   const [formData, setFormData] = useState({
     imgURL: '',
     item: '',
@@ -52,6 +52,7 @@ const UploadModal = ({ onClose }) => {
     try {
       const fd = new FormData();
       fd.append('file', image);
+      fd.append('folder', folder);
       fd.append('upload_preset', uploadPreset);
       fd.append('resorce_type', 'image');
 
