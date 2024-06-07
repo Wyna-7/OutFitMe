@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { addImage } from '../apiService';
 import './uploadModal.css';
 
@@ -15,20 +15,22 @@ const UploadModal = ({ onClose }) => {
 
   const [image, setImage] = useState('placeholder');
 
-  let resURL = '';
+  // useEffect(() => {
+  //   setFormData((formData) => ({
+  //     //TODO figure out how to get it set before using addImage!!!
+  //     ...formData,
+  //     imgURL: resURL,
+  //   }));
+  //   console.log('formData in first useEffect', formData);
+  // }, []);
 
   useEffect(() => {
-    setFormData((formData) => ({
-      //TODO figure out how to get it set before using addImage!!!
-      ...formData,
-      imgURL: resURL,
-    }));
-    console.log('formData in first useEffect', formData);
-  }, []);
-
-  useEffect(() => {
-    console.log('formData in second useEffect', formData);
+    if (formData.imgURL === '') {
+      return;
+    }
     addImage(formData);
+    console.log('****formData in useEffect AFTER addImage', formData);
+    onClose(); // Close the modal after uploading
   }, [formData.imgURL]);
 
   const handleChange = (event) => {
@@ -60,12 +62,16 @@ const UploadModal = ({ onClose }) => {
       };
       const response = await fetch(url, options).then((res) => res.json()); //just needed to parse the response body :-)
 
-      resURL = response.secure_url;
-      console.log('formData from modal', resURL);
+      const resURL = response.secure_url;
+      console.log('****resURL set?', resURL);
 
-      console.log('data from modal', formData);
+      setFormData((formData) => ({
+        //TODO imgURL in mongo should be unique as to not upload the same pic twice
+        ...formData,
+        imgURL: resURL,
+      }));
 
-      onClose(); // Close the modal after uploading
+      console.log('--------formData before closing modal:', formData);
     } catch (error) {
       console.error('Upload failed', error);
     }
