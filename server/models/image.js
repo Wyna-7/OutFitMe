@@ -17,7 +17,7 @@ const imageSchema = new Schema({
     required: true,
   },
   tempRange: {
-    type: String,
+    type: [String],
     lowercase: true,
     required: true,
   },

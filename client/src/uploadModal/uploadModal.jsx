@@ -9,11 +9,12 @@ const UploadModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
     imgURL: '',
     item: '',
-    tempRange: '',
+    tempRange: [],
     rain: false,
   });
 
-  const [image, setImage] = useState('placeholder');
+  const [image, setImage] = useState('');
+  const [tempChecks, setTempChecks] = useState([]); //separate state so I can handle checking/unchecking of boxes
 
   useEffect(() => {
     if (formData.imgURL === '') {
@@ -30,11 +31,26 @@ const UploadModal = ({ onClose }) => {
     if (name === 'rain') {
       value = value === 'true';
     }
+
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
+  };
+
+  const handleTempChange = (event) => {
+    let { value, checked } = event.target;
+
+    // Case 1 : The user checks the box
+    if (checked) {
+      setTempChecks((prevTempChecks) => [...prevTempChecks, value]);
+    }
+
+    // Case 2  : The user unchecks the box
+    else {
+      setTempChecks(tempChecks.filter((event) => event !== value));
+    }
   };
 
   const handleUpload = async (event) => {
@@ -55,11 +71,11 @@ const UploadModal = ({ onClose }) => {
       const response = await fetch(url, options).then((res) => res.json()); //just needed to parse the response body :-)
 
       const resURL = response.secure_url;
-      //console.log('****resURL set?', resURL);
 
       setFormData((formData) => ({
         ...formData,
         imgURL: resURL,
+        tempRange: [...tempChecks],
       }));
     } catch (error) {
       console.error('Upload failed', error);
@@ -125,45 +141,45 @@ const UploadModal = ({ onClose }) => {
             <legend>For which temperature is it comfortable?</legend>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="cold"
                 name="tempRange"
                 value="Cold"
-                checked={formData.tempRange === 'Cold'}
-                onChange={handleChange}
+                //checked={formData.tempRange === 'Cold'}
+                onChange={handleTempChange}
               />
               <label htmlFor="cold">Cold</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="cool"
                 name="tempRange"
                 value="Cool"
-                checked={formData.tempRange === 'Cool'}
-                onChange={handleChange}
+                //checked={formData.tempRange === 'Cool'}
+                onChange={handleTempChange}
               />
               <label htmlFor="cool">Cool</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="warm"
                 name="tempRange"
                 value="Warm"
-                checked={formData.tempRange === 'Warm'}
-                onChange={handleChange}
+                //checked={formData.tempRange === 'Warm'}
+                onChange={handleTempChange}
               />
               <label htmlFor="warm">Warm</label>
             </div>
             <div>
               <input
-                type="radio"
+                type="checkbox"
                 id="hot"
                 name="tempRange"
                 value="Hot"
-                checked={formData.tempRange === 'Hot'}
-                onChange={handleChange}
+                //checked={formData.tempRange === 'Hot'}
+                onChange={handleTempChange}
               />
               <label htmlFor="hot">Hot</label>
             </div>

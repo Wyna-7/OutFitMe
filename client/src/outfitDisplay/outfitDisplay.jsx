@@ -21,7 +21,7 @@ function OutfitDisplay(weatherData) {
     gatherWeather();
   };
 
-  //extract info from weatherdata and set it to send via request
+  //extract info from weatherdata and set it
   const gatherWeather = () => {
     const weatherDataTemp = weatherData.weatherData.temp;
     const weatherDataDescription = weatherData.weatherData.description;
