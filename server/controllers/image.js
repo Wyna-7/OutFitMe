@@ -11,30 +11,23 @@ exports.postImage = async (ctx) => {
     ctx.throw(500, 'Something went wrong uploading the picture');
   }
 };
-
+//instead of repeating * 3, can I make the item value dynamic and pass it from the front too?
 exports.getAllTops = async (ctx) => {
-  const { tempToday, rainToday } = ctx.request.body;
+  //const { tempToday, rainToday } = ctx.request.body;
   try {
-    ctx.body = await image.find({
+    const topArr = await image.find({
       item: 'top',
-      tempRange: tempToday,
-      rain: rainToday,
+      tempRange: 'hot',
+      rain: true,
     });
-    ctx.status = 200;
+    const randomTop = topArr[Math.floor(Math.random() * topArr.length)];
+    if (randomTop) {
+      ctx.body = randomTop;
+      ctx.status = 200;
+    } else {
+      ctx.throw(404, 'No appropiate clothing items were found');
+    }
   } catch (error) {
     ctx.throw(500, 'Something went wrong getting the pictures');
   }
 };
-
-// exports.getImage = async (ctx) => {
-//   try {
-//     const getImage = await image.findOne().sort({ _id: -1 });
-//     if (getImage) {
-//       ctx.body = getImage;
-//     } else {
-//       ctx.throw(404, 'Image was not found');
-//     }
-//   } catch (error) {
-//     ctx.throw(500, 'Something went wrong getting the picture');
-//   }
-// };
