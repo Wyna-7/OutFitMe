@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getRandomTop } from '../apiService';
+import { getRandomItem } from '../apiService';
 import './outfitDisplay.css';
 
 function OutfitDisplay(weatherData) {
@@ -11,52 +11,71 @@ function OutfitDisplay(weatherData) {
 
   const [weatherToday, setWeatherToday] = useState({
     tempToday: '',
-    rainToday: false,
+    rainToday: '',
   });
 
   const gatherWeather = () => {
-    console.log('......___', weatherData);
-    // if (weatherData.temp <= 10) {
-    //   setWeatherToday({ tempToday: 'cold' });
-    // } else if (weatherData <= 18) {
-    //   setWeatherToday({ tempToday: 'cool' });
-    // } else if (weatherData <= 25) {
-    //   setWeatherToday({ tempToday: 'warm' });
-    // } else {
-    setWeatherToday({ tempToday: 'hot', rain: false });
-    // }
+    const weatherDataTemp = weatherData.weatherData.temp;
+    const weatherDataDescription = weatherData.weatherData.description;
 
-    // if (weatherData.rain === true) {
-    //   setWeatherToday({ rain: true });
-    // } else {
-    //   setWeatherToday({ rain: false });
-    // }
+    if (weatherDataTemp <= 10) {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'cold' }));
+    } else if (weatherDataTemp <= 18) {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'cool' }));
+    } else if (weatherDataTemp <= 25) {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'warm' }));
+    } else {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'hot' }));
+    }
+
+    if (
+      weatherDataDescription === 'Thunderstorm' ||
+      weatherDataDescription === 'Drizzle' ||
+      weatherDataDescription === 'Rain' ||
+      weatherDataDescription === 'Snow'
+    ) {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: true }));
+    } else {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: false }));
+    }
   };
 
-  const asyncfetchtopcall = async (tempToday, rainToday) => {
-    await getRandomTop(tempToday, rainToday);
+  const asyncCallHelper = async (item, tempToday, rainToday) => {
+    return await getRandomItem(item, tempToday, rainToday);
   };
 
   useEffect(() => {
-    if (!weatherToday) return;
     const { tempToday, rainToday } = weatherToday;
     console.log('weatherToday in effect', weatherToday);
-    // get random imgURL from a clothing item that matches weather stats
 
-    const randomTop = asyncfetchtopcall(tempToday, rainToday); //async  getRandomTop(tempToday, rainToday);
+    asyncCallHelper('top', tempToday, rainToday).then((res) => {
+      setOutfit((prevOutfit) => ({ ...prevOutfit, top: res }));
+    });
+    asyncCallHelper('bottom', tempToday, rainToday).then((res) => {
+      setOutfit((prevOutfit) => ({ ...prevOutfit, bottom: res }));
+    });
+    asyncCallHelper('shoe', tempToday, rainToday).then((res) => {
+      setOutfit((prevOutfit) => ({ ...prevOutfit, shoe: res }));
+    });
 
-    console.log('randomTop in display', randomTop);
+    // const randomBottom = asyncCallHelper('bottom', tempToday, rainToday);
+    // const randomShoe = asyncCallHelper('shoe', tempToday, rainToday);
+
+    // //Once it works, destructure to get imgURL from a clothing item that matches weather stats
+    // console.log('randomTop in display', randomTop);
+    // console.log('randomBottom in display', randomBottom);
+    // console.log('randomShoe in display', randomShoe);
+    // set random imgURL as src for the corresponding image
+    // setOutfit({
+    //   top: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768634/outfitme/quh8ru1npxxqonxd00dd.png',
+    //   bottom: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768618/outfitme/ying1vo5thpccitaqqwg.png',   images render ok on page, may need to transform size when uploading to cloudinary
+    //   shoe: '', //https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768651/outfitme/ducoo4588tycomxyaaaz.png',
+    // });
   }, [weatherToday]);
 
   const generateOutfit = async (event) => {
     gatherWeather();
-
-    // set random imgURL as src for the corresponding image
-    setOutfit({
-      top: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768634/outfitme/quh8ru1npxxqonxd00dd.png',
-      bottom: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768618/outfitme/ying1vo5thpccitaqqwg.png',   images render ok on page, may need to transform size when uploading to cloudinary
-      shoe: '', //https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768651/outfitme/ducoo4588tycomxyaaaz.png',
-    });
+    console.log('outfit', outfit);
   };
 
   return (

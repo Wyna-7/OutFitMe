@@ -41,12 +41,11 @@ function App() {
   }, [weatherData.description]);
 
   const getLocation = () => {
-    console.log('hi');
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        console.log('coords', lat, lon);
+
         getWeather(lat, lon);
       });
     } else {

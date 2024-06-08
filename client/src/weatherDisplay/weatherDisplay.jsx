@@ -1,19 +1,6 @@
 import './weatherDisplay.css';
 //function WeatherDisplay(props) {
-function WeatherDisplay({ weatherData, emoji, getLocation, getWeather }) {
-  // const getLocation2 = () => {
-  //   console.log('hi');
-  //   if ('geolocation' in navigator) {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       const lat = position.coords.latitude;
-  //       const lon = position.coords.longitude;
-  //       console.log('coords', lat, lon);
-  //       getWeather(lat, lon);
-  //     });
-  //   } else {
-  //     alert('Please enable geolocation to use this app.'); //maybe try sweetalert2?  https://sweetalert2.github.io/
-  //   }
-  // };
+function WeatherDisplay({ weatherData, emoji, getLocation }) {
   return (
     <div className="weather-container">
       {weatherData ? (
