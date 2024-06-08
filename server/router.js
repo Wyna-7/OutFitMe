@@ -6,6 +6,7 @@ const image = require('./controllers/image');
 
 //MVP routes
 router.post('/upload', image.postImage);
+router.get('/getAllTops', image.getAllTops);
 // router.get('/getRandomTop', image.getRandomTop);
 // router.get('/getRandomBottom', image.getRandomBottom);
 // router.get('/getRandomShoe', image.getRandomShoe);

@@ -12,15 +12,29 @@ exports.postImage = async (ctx) => {
   }
 };
 
-exports.getImage = async (ctx) => {
+exports.getAllTops = async (ctx) => {
+  const { tempToday, rainToday } = ctx.request.body;
   try {
-    const getImage = await image.findOne().sort({ _id: -1 });
-    if (getImage) {
-      ctx.body = getImage;
-    } else {
-      ctx.throw(404, 'Image was not found');
-    }
+    ctx.body = await image.find({
+      item: 'top',
+      tempRange: tempToday,
+      rain: rainToday,
+    });
+    ctx.status = 200;
   } catch (error) {
-    ctx.throw(500, 'Something went wrong getting the picture');
+    ctx.throw(500, 'Something went wrong getting the pictures');
   }
 };
+
+// exports.getImage = async (ctx) => {
+//   try {
+//     const getImage = await image.findOne().sort({ _id: -1 });
+//     if (getImage) {
+//       ctx.body = getImage;
+//     } else {
+//       ctx.throw(404, 'Image was not found');
+//     }
+//   } catch (error) {
+//     ctx.throw(500, 'Something went wrong getting the picture');
+//   }
+// };
