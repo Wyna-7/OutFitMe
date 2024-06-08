@@ -30,4 +30,18 @@ const getWeatherData = async (lat, lon) => {
   return weatherData;
 };
 
-export { addImage, getWeatherData };
+const getRandomTop = async (tempToday, rainToday) => {
+  const randomTop = await fetch(`${baseURL}/getAllTops`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ tempToday, rainToday }),
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(`${err.message} while fetching random top`);
+    });
+  return randomTop;
+};
+export { addImage, getWeatherData, getRandomTop };

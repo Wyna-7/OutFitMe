@@ -6,7 +6,7 @@ function DisplayContainer({ weatherData, emoji, getLocation, getWeather }) {
   return (
     <>
       <div className="display-container">
-        <OutfitDisplay />
+        <OutfitDisplay weatherData={weatherData} />
         <WeatherDisplay
           getLocation={getLocation}
           weatherData={weatherData}
