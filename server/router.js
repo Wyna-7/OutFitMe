@@ -6,9 +6,9 @@ const image = require('./controllers/image');
 
 //MVP routes
 router.post('/upload', image.postImage);
-router.get('/getTops', image.getTops);
-router.get('/getBottoms', image.getBottoms);
-router.get('/getShoes', image.getShoes);
+router.get('/getTop/:item/:tempToday/:rainToday', image.getRandomItem); //changed named in controller
+// router.get('/getBottoms', image.getBottoms);
+// router.get('/getShoes', image.getShoes);
 
 //Not part of MVP -- if filtering done in client, I don't need these
 // router.get('/getAllTop', image.getAllTop);
