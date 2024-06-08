@@ -1,12 +1,12 @@
 'use strict';
 
-const image = require('../models/image');
+const Image = require('../models/image');
 
 //This method waits in client for cloudinary to send the imURL, then saves the image to the database
 exports.postImage = async (ctx) => {
   console.log(ctx.request.body);
   try {
-    await image.create(ctx.request.body);
+    await Image.create(ctx.request.body);
     ctx.status = 200;
   } catch (err) {
     ctx.throw(500, 'Something went wrong uploading the picture');
@@ -17,11 +17,13 @@ exports.postImage = async (ctx) => {
 exports.getRandomItem = async (ctx) => {
   const { item, tempToday, rainToday } = ctx.params;
   try {
-    const randomTop = await image.findOne({
+    const allItems = await Image.find({
       item: item,
       tempRange: tempToday,
       rain: rainToday,
     });
+
+    const randomTop = allItems[Math.floor(Math.random() * allItems.length)];
 
     if (randomTop) {
       ctx.body = randomTop;

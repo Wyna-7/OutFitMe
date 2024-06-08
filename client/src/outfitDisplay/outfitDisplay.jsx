@@ -42,21 +42,23 @@ function OutfitDisplay(weatherData) {
       weatherDataDescription === 'Rain' ||
       weatherDataDescription === 'Snow'
     ) {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: true }));
-    } else {
       setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: false }));
+    } else {
+      setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: true }));
     }
   };
 
+  const asyncCallHelper = async (item, tempToday, rainToday) => {
+    console.log('hi');
+    return await getRandomItem(item, tempToday, rainToday);
+  };
   //once weatherdata is correctly set, make requests and set outfit data
   useEffect(() => {
     if (weatherToday.tempToday === '' || weatherToday.rainToday === '') return;
 
     const { tempToday, rainToday } = weatherToday;
 
-    const asyncCallHelper = async (item, tempToday, rainToday) => {
-      return await getRandomItem(item, tempToday, rainToday);
-    };
+    console.log('----', tempToday, rainToday);
 
     asyncCallHelper('top', tempToday, rainToday).then((res) => {
       setOutfit((prevOutfit) => ({ ...prevOutfit, top: res }));

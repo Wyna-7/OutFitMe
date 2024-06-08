@@ -32,12 +32,13 @@ const getWeatherData = async (lat, lon) => {
 //Get random item from database according to passed params
 const getRandomItem = async (item, tempToday, rainToday) => {
   const randomItem = await fetch(
-    `${baseURL}/getTop/${item}/${tempToday}/${rainToday}`
+    `${baseURL}/getRandomItem/${item}/${tempToday}/${rainToday}`
   )
     .then((res) => res.json())
     .catch((err) => {
       console.log(`${err.message} while fetching random ${item}`);
     });
+  console.log('randomItem', randomItem);
 
   return randomItem.imgURL;
 };

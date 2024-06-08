@@ -41,7 +41,7 @@ const UploadModal = ({ onClose }) => {
 
   const handleTempChange = (event) => {
     let { value, checked } = event.target;
-
+    value = value.toLowerCase();
     // Case 1 : The user checks the box
     if (checked) {
       setTempChecks((prevTempChecks) => [...prevTempChecks, value]);
