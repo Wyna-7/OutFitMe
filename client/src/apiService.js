@@ -39,7 +39,6 @@ const getRandomItem = async (item, tempToday, rainToday) => {
       console.log(`${err.message} while fetching random ${item}`);
     });
 
-  console.log('randomItem', randomItem.imgURL);
   return randomItem.imgURL;
 };
 export { addImage, getWeatherData, getRandomItem };

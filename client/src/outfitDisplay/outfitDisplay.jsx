@@ -3,17 +3,25 @@ import { getRandomItem } from '../apiService';
 import './outfitDisplay.css';
 
 function OutfitDisplay(weatherData) {
+  //state to set imgURL's in display
   const [outfit, setOutfit] = useState({
     top: '',
     bottom: '',
     shoe: '',
   });
 
+  //state to gather and send current weather info as params in request URL
   const [weatherToday, setWeatherToday] = useState({
     tempToday: '',
     rainToday: '',
   });
 
+  //onclick gather weather info to send via request
+  const generateOutfit = async (event) => {
+    gatherWeather();
+  };
+
+  //extract info from weatherdata and set it to send via request
   const gatherWeather = () => {
     const weatherDataTemp = weatherData.weatherData.temp;
     const weatherDataDescription = weatherData.weatherData.description;
@@ -40,13 +48,15 @@ function OutfitDisplay(weatherData) {
     }
   };
 
-  const asyncCallHelper = async (item, tempToday, rainToday) => {
-    return await getRandomItem(item, tempToday, rainToday);
-  };
-
+  //once weatherdata is correctly set, make requests and set outfit data
   useEffect(() => {
+    if (weatherToday.tempToday === '' || weatherToday.rainToday === '') return;
+
     const { tempToday, rainToday } = weatherToday;
-    console.log('weatherToday in effect', weatherToday);
+
+    const asyncCallHelper = async (item, tempToday, rainToday) => {
+      return await getRandomItem(item, tempToday, rainToday);
+    };
 
     asyncCallHelper('top', tempToday, rainToday).then((res) => {
       setOutfit((prevOutfit) => ({ ...prevOutfit, top: res }));
@@ -57,26 +67,7 @@ function OutfitDisplay(weatherData) {
     asyncCallHelper('shoe', tempToday, rainToday).then((res) => {
       setOutfit((prevOutfit) => ({ ...prevOutfit, shoe: res }));
     });
-
-    // const randomBottom = asyncCallHelper('bottom', tempToday, rainToday);
-    // const randomShoe = asyncCallHelper('shoe', tempToday, rainToday);
-
-    // //Once it works, destructure to get imgURL from a clothing item that matches weather stats
-    // console.log('randomTop in display', randomTop);
-    // console.log('randomBottom in display', randomBottom);
-    // console.log('randomShoe in display', randomShoe);
-    // set random imgURL as src for the corresponding image
-    // setOutfit({
-    //   top: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768634/outfitme/quh8ru1npxxqonxd00dd.png',
-    //   bottom: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768618/outfitme/ying1vo5thpccitaqqwg.png',   images render ok on page, may need to transform size when uploading to cloudinary
-    //   shoe: '', //https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768651/outfitme/ducoo4588tycomxyaaaz.png',
-    // });
   }, [weatherToday]);
-
-  const generateOutfit = async (event) => {
-    gatherWeather();
-    console.log('outfit', outfit);
-  };
 
   return (
     <>
