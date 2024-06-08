@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getRandomTop } from '../apiService';
 import './outfitDisplay.css';
 
@@ -15,30 +15,38 @@ function OutfitDisplay(weatherData) {
   });
 
   const gatherWeather = () => {
-    if (weatherData.temp <= 10) {
-      setWeatherToday({ tempToday: 'cold' });
-    } else if (weatherData <= 18) {
-      setWeatherToday({ tempToday: 'cool' });
-    } else if (weatherData <= 25) {
-      setWeatherToday({ tempToday: 'warm' });
-    } else {
-      setWeatherToday({ tempToday: 'hot' });
-    }
+    console.log('......___', weatherData);
+    // if (weatherData.temp <= 10) {
+    //   setWeatherToday({ tempToday: 'cold' });
+    // } else if (weatherData <= 18) {
+    //   setWeatherToday({ tempToday: 'cool' });
+    // } else if (weatherData <= 25) {
+    //   setWeatherToday({ tempToday: 'warm' });
+    // } else {
+    setWeatherToday({ tempToday: 'hot', rain: false });
+    // }
 
-    if (weatherData.rain === true) {
-      setWeatherToday({ rain: true });
-    } else {
-      setWeatherToday({ rain: false });
-    }
+    // if (weatherData.rain === true) {
+    //   setWeatherToday({ rain: true });
+    // } else {
+    //   setWeatherToday({ rain: false });
+    // }
   };
+
+  useEffect(() => {
+    if (!weatherToday) return;
+    console.log('weatherToday in effect', weatherToday);
+    const { tempToday, rainToday } = weatherToday;
+    // get random imgURL from a clothing item that matches weather stats
+
+    const randomTop = getRandomTop(tempToday, rainToday);
+    console.log('randomtop', randomTop);
+    //console.log('randomTop', randomTop);
+  }, [weatherToday]);
 
   const generateOutfit = async (event) => {
     gatherWeather();
-    console.log('----', weatherToday);
-    const { tempToday, rainToday } = weatherToday;
-    // get random imgURL from a clothing item that matches weather stats
-    const randomTop = await getRandomTop(tempToday, rainToday);
-    console.log('randomTop', randomTop);
+
     // set random imgURL as src for the corresponding image
     setOutfit({
       top: '', //'https://res.cloudinary.com/dmsktnqsm/image/upload/v1717768634/outfitme/quh8ru1npxxqonxd00dd.png',

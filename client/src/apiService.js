@@ -32,7 +32,7 @@ const getWeatherData = async (lat, lon) => {
 
 const getRandomTop = async (tempToday, rainToday) => {
   const randomTop = await fetch(`${baseURL}/getAllTops`, {
-    method: 'GET',
+    //method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
