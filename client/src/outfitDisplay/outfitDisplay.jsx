@@ -33,15 +33,19 @@ function OutfitDisplay(weatherData) {
     // }
   };
 
+  const asyncfetchtopcall = async (tempToday, rainToday) => {
+    await getRandomTop(tempToday, rainToday);
+  };
+
   useEffect(() => {
     if (!weatherToday) return;
-    console.log('weatherToday in effect', weatherToday);
     const { tempToday, rainToday } = weatherToday;
+    console.log('weatherToday in effect', weatherToday);
     // get random imgURL from a clothing item that matches weather stats
 
-    const randomTop = getRandomTop(tempToday, rainToday);
-    console.log('randomtop', randomTop);
-    //console.log('randomTop', randomTop);
+    const randomTop = asyncfetchtopcall(tempToday, rainToday); //async  getRandomTop(tempToday, rainToday);
+
+    console.log('randomTop in display', randomTop);
   }, [weatherToday]);
 
   const generateOutfit = async (event) => {
