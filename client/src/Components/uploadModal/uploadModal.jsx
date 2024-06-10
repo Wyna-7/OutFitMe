@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { addImage } from '../apiService';
+import { addImage } from '../../Services/apiService';
 import './uploadModal.css';
 
 const UploadModal = ({ onClose }) => {
   const cloudName = import.meta.env.VITE_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_UPLOAD_PRESET;
   const folder = import.meta.env.VITE_CLOUDINARY_FOLDER;
+
   const [formData, setFormData] = useState({
     imgURL: '',
     item: '',
     tempRange: [],
     rain: false,
   });
-
   const [image, setImage] = useState('');
   const [tempChecks, setTempChecks] = useState([]); //separate state so I can handle checking/unchecking of boxes
 

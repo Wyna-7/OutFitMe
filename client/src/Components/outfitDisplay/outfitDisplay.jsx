@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getRandomItem } from '../apiService';
+import { getRandomItem } from '../../Services/apiService';
 import './outfitDisplay.css';
 
 function OutfitDisplay(weatherData) {

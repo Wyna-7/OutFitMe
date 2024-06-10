@@ -19,6 +19,7 @@
 .emoji {
   font-size: 12rem;
   color: orange;
+  font-family: 'Segoe UI Emoji'; /*This font makes all emojis appear colored*/
 }
 
 .top-data {
