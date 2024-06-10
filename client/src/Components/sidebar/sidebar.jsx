@@ -24,28 +24,26 @@ function Sidebar() {
 
   return (
     <>
-      <div className="sidebar">
-        <h1>OutFitMe</h1> {/* This will just be static */}
-        <div className="all-icons">
-          <button>
-            <PiTShirt style={{ color: 'white', background: 'black' }} />
-          </button>
-          <button>
-            <PiPants style={{ color: 'white', background: 'black' }} />
-          </button>
-          <button>
-            <PiSneaker style={{ color: 'white', background: 'black' }} />
-          </button>
+      <div className="sidebar-nav">
+        <h1 className="sidebar-title">OutFitMe</h1>
+        <button className="sidebar-icon">
+          <PiTShirt />
+        </button>
+        <button className="sidebar-icon">
+          <PiPants />
+        </button>
+        <button className="sidebar-icon">
+          <PiSneaker />
+        </button>
 
-          <button className="like">
-            <PiHeartStraight style={{ color: 'white', background: 'black' }} />
-          </button>
-          <button className="add-item" onClick={handleAddItemClick}>
-            {/* onClick open modal/cloudinary widget */}
-            <PiPlusCircle style={{ color: 'white', background: 'black' }} />
-          </button>
-          {isModalOpen && <UploadModal onClose={handleCloseModal} />}
-        </div>
+        <button className="like sidebar-icon">
+          <PiHeartStraight />
+        </button>
+        <button className="add-item sidebar-icon" onClick={handleAddItemClick}>
+          {/* onClick open modal/cloudinary widget */}
+          <PiPlusCircle />
+        </button>
+        {isModalOpen && <UploadModal onClose={handleCloseModal} />}
       </div>
     </>
   );

@@ -1,21 +1,45 @@
 .container {
-  background-color: aqua;
-  width: 55rem;
-  height: 35rem;
-  margin-top: 15rem;
-  align-content: center;
+  background-color: rgb(226, 232, 232);
+  border: solid black;
+  border-radius: 10px;
+  width: 80rem;
+  height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  box-shadow: 1px 2px 3px 0 rgba(68, 66, 66, 0.054);
 }
 
 .random-outfit {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  background-color: blueviolet;
+  justify-content: space-evenly;
 }
 .clothing-item {
-  height: 13rem;
-  width: 13rem;
-  background-color: blanchedalmond;
+  height: 17rem;
+  width: 17rem;
+  background-color: white;
+  border: thick solid grey;
+}
+
+.shoes {
+  width: 25rem;
+}
+
+.generate-outfit {
+  background-color: rgba(255, 255, 255, 0.881);
+  border-radius: 10px;
+  border: 0px;
   color: black;
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  text-decoration: none #d1d5db solid;
+  text-decoration-thickness: auto;
+  box-shadow: 1px 2px 3px 0 rgba(202, 200, 200, 0.793);
+  cursor: pointer;
+  margin: 2rem;
 }

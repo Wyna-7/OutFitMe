@@ -1,8 +1,9 @@
 .weather-container {
-  background-color: aqua;
+  background-color: rgb(226, 232, 232);
+  border: solid black;
+  border-radius: 10px;
   width: 30rem;
-  height: 35rem;
-  margin-top: 15rem;
+  height: 34rem;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -11,7 +12,6 @@
 }
 
 .apidata {
-  background-color: aqua;
   display: flex;
   justify-content: center;
 }
@@ -22,7 +22,9 @@
 }
 
 .top-data {
-  font-size: 2.5rem;
+  display: contents;
+
+  justify-content: space-around;
 }
 
 .center-data {

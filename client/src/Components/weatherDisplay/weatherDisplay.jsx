@@ -3,14 +3,12 @@ import './weatherDisplay.css';
 function WeatherDisplay({ weatherData, emoji }) {
   return (
     <div className="weather-container">
-      {/* {weatherData ? (
-        <> */}
       <div className="top-data">
-        <h1 className="location top-data apidata">{weatherData.location}</h1>
-        <h1 className="temperature top-data apidata">
+        <h1 className="location apidata">{weatherData.location}</h1>
+        <h1 className="temperature apidata">
           {Math.round(Number(weatherData.temp))}ºC
         </h1>
-        <p>
+        <p className="apidata">
           {Math.round(Number(weatherData.temp_min))}º/
           {Math.round(Number(weatherData.temp_max))}º
         </p>
@@ -26,16 +24,10 @@ function WeatherDisplay({ weatherData, emoji }) {
       </div>
 
       <div className="emoji-display">
-        <p>{weatherData.description}</p>
+        <p className="apidata">{weatherData.description}</p>
         <div className="emoji apidata">{emoji}</div>
       </div>
     </div>
-    //</>
-    // ) : (
-    // <div>Loading weather data</div>
-    // )}
-    //<button onClick={getLocation}>Get my weather!</button>
-    //</div>
   );
 }
 

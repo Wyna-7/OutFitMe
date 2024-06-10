@@ -1,15 +1,17 @@
-.display-container {
-  width: 85%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+.welcome-message {
+  text-align: center;
 }
 
-button {
-  font-size: 2rem;
-  margin-bottom: 7rem;
-  cursor: pointer;
-  align-self: center;
-  padding: 3px;
-  background-color: rgb(139, 136, 136);
+.main {
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-content: center;
+}
+
+.displays {
+  display: flex;
+  justify-content: space-evenly;
+  align-content: center;
 }

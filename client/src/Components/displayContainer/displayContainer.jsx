@@ -5,14 +5,18 @@ import './displayContainer.css';
 function DisplayContainer({ weatherData, emoji, name }) {
   return (
     <>
-      <h1>Hello {name}! Here is your outfit for today:</h1>
-      <div className="display-container">
-        <OutfitDisplay weatherData={weatherData} />
-        <WeatherDisplay
-          //getLocation={getLocation}
-          weatherData={weatherData}
-          emoji={emoji}
-        />
+      <div className="main">
+        <h1 className="welcome-message">
+          Hello {name}! You can now generate an outfit for today:
+        </h1>
+        <div className="displays">
+          <OutfitDisplay weatherData={weatherData} />
+          <WeatherDisplay
+            //getLocation={getLocation}
+            weatherData={weatherData}
+            emoji={emoji}
+          />
+        </div>
       </div>
     </>
   );

@@ -7,9 +7,10 @@ function OutfitDisplay(weatherData) {
 
   //state to set imgURL's in display
   const [outfit, setOutfit] = useState({
-    top: '',
-    bottom: '',
-    shoe: '',
+    top: 'https://www.creativefabrica.com/wp-content/uploads/2020/04/21/Tshirt-icon-black-thin-stripe-2-Graphics-3920769-1-1-580x386.jpg',
+    bottom:
+      'https://static.vecteezy.com/system/resources/previews/010/347/283/non_2x/pants-boy-garment-line-icon-illustration-vector.jpg',
+    shoe: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Running_shoe_icon.png/640px-Running_shoe_icon.png',
   });
 
   //state to gather and send current weather info as params in request URL
@@ -74,11 +75,15 @@ function OutfitDisplay(weatherData) {
     <>
       <div className="container">
         <div className="random-outfit">
-          <img className="top clothing-item" src={outfit.top}></img>
-          <img className="bottom clothing-item" src={outfit.bottom}></img>
-          <img className="shoe clothing-item" src={outfit.shoe}></img>
+          <img className="tops clothing-item" src={outfit.top}></img>
+          <img className="bottoms clothing-item" src={outfit.bottom}></img>
+          <img className="shoes clothing-item" src={outfit.shoe}></img>
         </div>
-        <button onClick={generateOutfit}>Create an outfit</button>
+        <div className="buttons">
+          <button className="generate-outfit" onClick={generateOutfit}>
+            Create an outfit
+          </button>
+        </div>
       </div>
     </>
   );

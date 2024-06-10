@@ -84,14 +84,18 @@ const UploadModal = ({ onClose }) => {
 
   return (
     <div className="modal">
+      <div className="modal-background"></div>
       <div className="modal-content">
-        <span className="close" onClick={onClose}></span>
+        <div className="top">
+          <span className="close" onClick={onClose}>
+            X
+          </span>
+          <h2>Upload a new clothing item</h2>
+        </div>
 
-        <form onSubmit={handleUpload}>
-          <h2>Upload a new clothing item!</h2>
-
-          <fieldset>
-            <label htmlFor="file">Choose a picture to upload</label>
+        <form className="form" onSubmit={handleUpload}>
+          <fieldset className="fieldset picture">
+            <legend htmlFor="file">Choose a picture to upload</legend>
             <input
               type="file"
               id="file"
@@ -100,7 +104,7 @@ const UploadModal = ({ onClose }) => {
             />
           </fieldset>
 
-          <fieldset>
+          <fieldset className="fieldset clothing">
             <legend>What type of clothing item is this?</legend>
             <div>
               <input
@@ -137,7 +141,7 @@ const UploadModal = ({ onClose }) => {
             </div>
           </fieldset>
 
-          <fieldset>
+          <fieldset className=" fieldset temperature">
             <legend>For which temperature is it comfortable?</legend>
             <div>
               <input
@@ -185,7 +189,7 @@ const UploadModal = ({ onClose }) => {
             </div>
           </fieldset>
 
-          <fieldset>
+          <fieldset className="fieldset rain">
             <legend>Can it be worn when it rains?</legend>
             <div>
               <input
@@ -211,7 +215,9 @@ const UploadModal = ({ onClose }) => {
             </div>
           </fieldset>
 
-          <button type="submit">Upload</button>
+          <button className="submit-btn" type="submit">
+            Upload
+          </button>
         </form>
       </div>
     </div>
