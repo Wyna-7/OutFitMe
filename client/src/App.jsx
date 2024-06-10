@@ -20,22 +20,29 @@ function App() {
   useEffect(() => {
     if (weatherData.description === '') return;
 
-    //console.log('effect', weatherData.description);
+    console.log('effect', typeof weatherData.description);
+
+    const descriptionToday = weatherData.description;
 
     switch (
-      weatherData.description //TODO Replace with not-so-ugly icons
+      descriptionToday //TODO Replace with not-so-ugly icons
     ) {
       case 'Thunderstorm':
         setEmoji('⛈');
+        break;
       case 'Drizzle':
         setEmoji('🌧');
+        break;
       case 'Rain':
         setEmoji('🌧');
+        break;
       case 'Snow':
         setEmoji('🌨');
+        break;
       case 'Clouds':
         setEmoji('⛅');
-      case 'Clear':
+        break;
+      default: //'Clear'
         setEmoji('☀');
     }
   }, [weatherData.description]);
