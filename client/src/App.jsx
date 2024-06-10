@@ -99,19 +99,22 @@ function App() {
           <div className="login-background"></div>
           <div className="login">
             <form className="login-form" onSubmit={getLocation}>
-              <label htmlFor="name">Hello! What is your name?</label>
+              <h1>Welcome to OutFitMe</h1>
+              <label htmlFor="name">Please enter your name:</label>
               <input
                 className="name-input"
                 type="text"
                 name="name"
                 id="name"
-                placeholder="Please write your name here"
+                placeholder="Write your name here"
                 value={name}
                 onChange={handleName}
                 required
               />
 
-              <button type="submit">Go to closet</button>
+              <button className="login-button" type="submit">
+                Go to closet
+              </button>
             </form>
           </div>
         </div>
