@@ -78,7 +78,7 @@ function OutfitDisplay(weatherData) {
           <img className="bottom clothing-item" src={outfit.bottom}></img>
           <img className="shoe clothing-item" src={outfit.shoe}></img>
         </div>
-        <button onClick={generateOutfit}>Generate outfit!</button>
+        <button onClick={generateOutfit}>Create an outfit</button>
       </div>
     </>
   );

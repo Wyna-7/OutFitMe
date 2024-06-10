@@ -8,6 +8,8 @@ function App() {
   //TODO: Move states, effects and methods to another file?
   //TODO: Style the page where user accepts to give their location first, have that accept button get weather and random outfit
   // to avoid having to click two buttons
+
+  //WEATHER
   const [weatherData, setWeatherData] = useState({
     location: '',
     temp: '',
@@ -93,11 +95,13 @@ function App() {
   return (
     <>
       {!clicked ? (
-        <div className="login">
-          <form onSubmit={getLocation}>
-            <fieldset>
+        <div className="login-container">
+          <div className="login-background"></div>
+          <div className="login">
+            <form className="login-form" onSubmit={getLocation}>
               <label htmlFor="name">Hello! What is your name?</label>
               <input
+                className="name-input"
                 type="text"
                 name="name"
                 id="name"
@@ -106,9 +110,10 @@ function App() {
                 onChange={handleName}
                 required
               />
-            </fieldset>
-            <button type="submit">Click here to generate an outfit!</button>
-          </form>
+
+              <button type="submit">Go to closet</button>
+            </form>
+          </div>
         </div>
       ) : (
         <div className="app-container">
