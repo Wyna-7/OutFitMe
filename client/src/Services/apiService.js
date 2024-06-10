@@ -4,29 +4,31 @@ const weatherAPIkey = import.meta.env.VITE_OPENWEATHER_API_KEY;
 //After cloudinary send imgURL, post image to database
 const addImage = async (formData) => {
   const { imgURL, item, tempRange, rain } = formData;
+  try {
+    const image = await fetch(`${baseURL}/upload`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ imgURL, item, tempRange, rain }),
+    });
 
-  const image = await fetch(`${baseURL}/upload`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ imgURL, item, tempRange, rain }),
-  }).catch((err) => console.log(`${err.message} while posting image`));
-
-  return image;
+    return image;
+  } catch (err) {
+    console.log(`${err.message} while posting image`);
+  }
 };
 
 //Get current location weather data form API
-const getWeatherData = async (lat, lon) => {
+const getWeatherData = (lat, lon) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherAPIkey}&units=metric`;
 
-  const weatherData = await fetch(url)
+  const weatherData = fetch(url)
     .then((data) => data.json())
     .catch((err) => {
       console.log(`${err.message} while fetching weather data`);
     });
 
-  console.log(weatherData);
   return weatherData;
 };
 

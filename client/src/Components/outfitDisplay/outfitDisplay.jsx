@@ -29,6 +29,7 @@ function OutfitDisplay(weatherData) {
     const weatherDataTemp = weatherData.weatherData.temp;
     const weatherDataDescription = weatherData.weatherData.description;
 
+    //TODO: Replace if statements with ONE function to map data, put it in a utilities file
     if (weatherDataTemp <= 10) {
       setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'cold' }));
     } else if (weatherDataTemp <= 18) {
