@@ -26,6 +26,7 @@ const getWeatherData = async (lat, lon) => {
       console.log(`${err.message} while fetching weather data`);
     });
 
+  console.log(weatherData);
   return weatherData;
 };
 

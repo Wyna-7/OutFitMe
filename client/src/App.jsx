@@ -1,12 +1,12 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import Sidebar from './sidebar/sidebar';
-import DisplayContainer from './displayContainer/displayContainer';
-import { getWeatherData } from './apiService';
+import Sidebar from './Components/sidebar/sidebar';
+import DisplayContainer from './Components/displayContainer/displayContainer';
+import { getWeatherData } from './Services/apiService';
 
 function App() {
   //TODO: Move states, effects and methods to another file?
-  //TODO: Route a page where user accepts to give their location first, have that accept button get weather and random outfit
+  //TODO: Style the page where user accepts to give their location first, have that accept button get weather and random outfit
   // to avoid having to click two buttons
   const [weatherData, setWeatherData] = useState({
     location: '',
@@ -19,15 +19,19 @@ function App() {
   });
 
   const [emoji, setEmoji] = useState('');
+  const [name, setName] = useState('');
+  const [clicked, setClicked] = useState(false);
+
+  const handleName = (event) => {
+    setName(event.target.value);
+  };
 
   useEffect(() => {
     if (weatherData.description === '') return;
 
     const descriptionToday = weatherData.description;
 
-    switch (
-      descriptionToday //TODO: Replace with not-so-ugly icons
-    ) {
+    switch (descriptionToday) {
       case 'Thunderstorm':
         setEmoji('⛈');
         break;
@@ -48,13 +52,18 @@ function App() {
     }
   }, [weatherData.description]);
 
-  const getLocation = () => {
+  const getLocation = (event) => {
+    event.preventDefault();
+
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
         getWeather(lat, lon);
+
+        console.log(weatherData);
+        setClicked(true);
       });
     } else {
       alert('Please enable geolocation to use this app.'); //TODO: maybe try sweetalert2?  https://sweetalert2.github.io/
@@ -83,8 +92,46 @@ function App() {
 
   return (
     <>
-      <div className="app-container">
-        {/*
+      {!clicked ? (
+        <div className="login">
+          <form onSubmit={getLocation}>
+            <fieldset>
+              <label htmlFor="name">Hello! What is your name?</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Please write your name here"
+                value={name}
+                onChange={handleName}
+                required
+              />
+            </fieldset>
+            <button type="submit">Click here to generate an outfit!</button>
+          </form>
+        </div>
+      ) : (
+        <div className="app-container">
+          <div className="sidebar">
+            <Sidebar />
+          </div>
+
+          <div className="display-container">
+            <DisplayContainer
+              //getLocation={getLocation}
+              weatherData={weatherData}
+              emoji={emoji}
+              name={name}
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+export default App;
+{
+  /*
         The app will have a static navbar on top with the app name.
         When clicking the app name, the side bar will open:
           - button to see all tops & delete pictures
@@ -102,11 +149,10 @@ function App() {
                   - warm, 18ºC-25ºC
                   - hot, more than 25ºC
               - apt for rain or not (true/false)
-        */}
-        <div className="sidebar">
-          <Sidebar />
-        </div>
-        {/* 
+        */
+}
+{
+  /* 
         Should this be named Dashboard instead? IDK
         Main app container will have a static weather display, and
         a dynamic display for:
@@ -115,17 +161,5 @@ function App() {
           - see bottoms gallery
           - see shoes gallery
           - see liked outfits gallery
-        */}
-        <div className="display-container">
-          <DisplayContainer
-            getLocation={getLocation}
-            weatherData={weatherData}
-            emoji={emoji}
-          />
-        </div>
-      </div>
-    </>
-  );
+        */
 }
-
-export default App;
