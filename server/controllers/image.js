@@ -12,8 +12,8 @@ exports.postImage = async (ctx) => {
     ctx.throw(500, 'Something went wrong uploading the picture');
   }
 };
-//Make the item value dynamic and pass it from the front too
-//uses params to dynamically return ONE image that meets the criteria for the day
+
+//uses params to dynamically return ONE image that meets the criteria for the day's weather
 exports.getRandomItem = async (ctx) => {
   const { item, tempToday, rainToday } = ctx.params;
   try {
@@ -23,10 +23,10 @@ exports.getRandomItem = async (ctx) => {
       rain: rainToday,
     });
 
-    const randomTop = allItems[Math.floor(Math.random() * allItems.length)];
+    const randomItem = allItems[Math.floor(Math.random() * allItems.length)];
 
-    if (randomTop) {
-      ctx.body = randomTop;
+    if (randomItem) {
+      ctx.body = randomItem;
       ctx.status = 200;
       return;
     } else {

@@ -38,7 +38,6 @@ const getRandomItem = async (item, tempToday, rainToday) => {
     .catch((err) => {
       console.log(`${err.message} while fetching random ${item}`);
     });
-  console.log('randomItem', randomItem);
 
   return randomItem.imgURL;
 };

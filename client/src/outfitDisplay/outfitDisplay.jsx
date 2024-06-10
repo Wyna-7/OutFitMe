@@ -3,6 +3,8 @@ import { getRandomItem } from '../apiService';
 import './outfitDisplay.css';
 
 function OutfitDisplay(weatherData) {
+  //TODO: Move states, effects and methods to another file?
+
   //state to set imgURL's in display
   const [outfit, setOutfit] = useState({
     top: '',
@@ -49,7 +51,6 @@ function OutfitDisplay(weatherData) {
   };
 
   const asyncCallHelper = async (item, tempToday, rainToday) => {
-    console.log('hi');
     return await getRandomItem(item, tempToday, rainToday);
   };
   //once weatherdata is correctly set, make requests and set outfit data
@@ -57,8 +58,6 @@ function OutfitDisplay(weatherData) {
     if (weatherToday.tempToday === '' || weatherToday.rainToday === '') return;
 
     const { tempToday, rainToday } = weatherToday;
-
-    console.log('----', tempToday, rainToday);
 
     asyncCallHelper('top', tempToday, rainToday).then((res) => {
       setOutfit((prevOutfit) => ({ ...prevOutfit, top: res }));

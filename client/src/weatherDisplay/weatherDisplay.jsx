@@ -1,5 +1,5 @@
 import './weatherDisplay.css';
-//function WeatherDisplay(props) {
+
 function WeatherDisplay({ weatherData, emoji, getLocation }) {
   return (
     <div className="weather-container">

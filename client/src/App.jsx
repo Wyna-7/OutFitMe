@@ -1,10 +1,13 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import Sidebar from './sidebar/sidebar';
-import DisplayContainer from './displayContainer';
+import DisplayContainer from './displayContainer/displayContainer';
 import { getWeatherData } from './apiService';
 
 function App() {
+  //TODO: Move states, effects and methods to another file?
+  //TODO: Route a page where user accepts to give their location first, have that accept button get weather and random outfit
+  // to avoid having to click two buttons
   const [weatherData, setWeatherData] = useState({
     location: '',
     temp: '',
@@ -20,12 +23,10 @@ function App() {
   useEffect(() => {
     if (weatherData.description === '') return;
 
-    console.log('effect', typeof weatherData.description);
-
     const descriptionToday = weatherData.description;
 
     switch (
-      descriptionToday //TODO Replace with not-so-ugly icons
+      descriptionToday //TODO: Replace with not-so-ugly icons
     ) {
       case 'Thunderstorm':
         setEmoji('⛈');
@@ -56,14 +57,13 @@ function App() {
         getWeather(lat, lon);
       });
     } else {
-      alert('Please enable geolocation to use this app.'); //maybe try sweetalert2?  https://sweetalert2.github.io/
+      alert('Please enable geolocation to use this app.'); //TODO: maybe try sweetalert2?  https://sweetalert2.github.io/
     }
   };
 
   const getWeather = (lat, lon) => {
-    //apiService method for weather should send lat and lon as arguments to add to the url
+    //apiService method for weather gets lat and lon as arguments to add to the url
     getWeatherData(lat, lon).then((weatherData) => {
-      //console.log('------', weatherData); //is the data in the component?
       const {
         name: location,
         main: { temp, humidity, feels_like, temp_max, temp_min },

@@ -10,6 +10,8 @@ import { useState } from 'react';
 import UploadModal from '../uploadModal/uploadModal';
 
 function Sidebar() {
+  //TODO: Add functionality to see (1) galleries by item type (2) liked outfits
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddItemClick = () => {

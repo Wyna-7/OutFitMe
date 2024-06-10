@@ -22,7 +22,7 @@ const UploadModal = ({ onClose }) => {
       return;
     }
     addImage(formData); //post to database
-    onClose(); // Close the modal after uploading
+    onClose(); // Close the modal after uploading TODO: Close modal using a button and/or clicking background as well
   }, [formData.imgURL]);
 
   const handleChange = (event) => {

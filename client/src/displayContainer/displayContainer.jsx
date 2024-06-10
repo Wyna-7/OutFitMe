@@ -1,5 +1,5 @@
-import OutfitDisplay from './outfitDisplay/outfitDisplay';
-import WeatherDisplay from './weatherDisplay/weatherDisplay';
+import OutfitDisplay from '../outfitDisplay/outfitDisplay';
+import WeatherDisplay from '../weatherDisplay/weatherDisplay';
 import './displayContainer.css';
 
 function DisplayContainer({ weatherData, emoji, getLocation }) {
