@@ -1,6 +1,6 @@
-import OutfitDisplay from '../outfitDisplay/outfitDisplay';
-import WeatherDisplay from '../weatherDisplay/weatherDisplay';
-import './displayContainer.css';
+import OutfitDisplay from '../OutfitDisplay/OutfitDisplay';
+import WeatherDisplay from '../WeatherDisplay/WeatherDisplay';
+import './DisplayContainer.css';
 
 function DisplayContainer({ weatherData, emoji, name }) {
   return (
@@ -11,11 +11,7 @@ function DisplayContainer({ weatherData, emoji, name }) {
         </h1>
         <div className="displays">
           <OutfitDisplay weatherData={weatherData} />
-          <WeatherDisplay
-            //getLocation={getLocation}
-            weatherData={weatherData}
-            emoji={emoji}
-          />
+          <WeatherDisplay weatherData={weatherData} emoji={emoji} />
         </div>
       </div>
     </>

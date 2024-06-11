@@ -1,4 +1,4 @@
-import './weatherDisplay.css';
+import './WeatherDisplay.css';
 
 function WeatherDisplay({ weatherData, emoji }) {
   return (

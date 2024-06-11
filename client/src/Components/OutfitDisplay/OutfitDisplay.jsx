@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getRandomItem } from '../../Services/apiService';
-import './outfitDisplay.css';
+import Button from '../Button/Button';
+import './OutfitDisplay.css';
 
 function OutfitDisplay(weatherData) {
   //TODO: Move states, effects and methods to another file?
@@ -81,9 +82,7 @@ function OutfitDisplay(weatherData) {
           <img className="shoes clothing-item" src={outfit.shoe}></img>
         </div>
         <div className="buttons">
-          <button className="generate-outfit" onClick={generateOutfit}>
-            Create an outfit
-          </button>
+          <Button text="Get outfit" onClick={generateOutfit} />
         </div>
       </div>
     </>

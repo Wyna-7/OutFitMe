@@ -3,7 +3,8 @@
   border: solid black;
   border-radius: 10px;
   width: 80rem;
-  height: 40rem;
+  min-height: 40rem;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,17 +16,18 @@
   width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 .clothing-item {
-  height: 17rem;
-  width: 17rem;
+  max-height: 17rem;
+  max-width: 17rem;
   background-color: white;
   border: thick solid grey;
 }
 
 .shoes {
-  width: 25rem;
+  max-width: 25rem;
 }
 
 .generate-outfit {

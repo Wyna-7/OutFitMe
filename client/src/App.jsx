@@ -1,8 +1,10 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import Sidebar from './Components/sidebar/sidebar';
-import DisplayContainer from './Components/displayContainer/displayContainer';
+import Sidebar from './Components/Sidebar/Sidebar';
+import DisplayContainer from './Components/DisplayContainer/DisplayContainer';
 import { getWeatherData } from './Services/apiService';
+import Button from './Components/Button/Button';
+import LoginPage from './Components/LoginPage/LoginPage';
 
 function App() {
   //TODO: Move states, effects and methods to another file?
@@ -21,12 +23,7 @@ function App() {
   });
 
   const [emoji, setEmoji] = useState('');
-  const [name, setName] = useState('');
   const [clicked, setClicked] = useState(false);
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
 
   useEffect(() => {
     if (weatherData.description === '') return;
@@ -95,29 +92,7 @@ function App() {
   return (
     <>
       {!clicked ? (
-        <div className="login-container">
-          <div className="login-background"></div>
-          <div className="login">
-            <form className="login-form" onSubmit={getLocation}>
-              <h1>Welcome to OutFitMe</h1>
-              <label htmlFor="name">Please enter your name:</label>
-              <input
-                className="name-input"
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Write your name here"
-                value={name}
-                onChange={handleName}
-                required
-              />
-
-              <button className="login-button" type="submit">
-                Go to closet
-              </button>
-            </form>
-          </div>
-        </div>
+        <LoginPage getLocation={getLocation} />
       ) : (
         <div className="app-container">
           <div className="sidebar">
@@ -126,7 +101,6 @@ function App() {
 
           <div className="display-container">
             <DisplayContainer
-              //getLocation={getLocation}
               weatherData={weatherData}
               emoji={emoji}
               name={name}

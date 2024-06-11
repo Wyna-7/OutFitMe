@@ -1,4 +1,4 @@
-import './sidebar.css';
+import './Sidebar.css';
 import {
   PiPants,
   PiTShirt,
@@ -7,7 +7,7 @@ import {
   PiPlusCircle,
 } from 'react-icons/pi';
 import { useState } from 'react';
-import UploadModal from '../uploadModal/uploadModal';
+import UploadModal from '../UploadModal/UploadModal';
 
 function Sidebar() {
   //TODO: Add functionality to see (1) galleries by item type (2) liked outfits

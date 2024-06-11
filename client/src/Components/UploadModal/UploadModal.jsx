@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addImage } from '../../Services/apiService';
-import './uploadModal.css';
+import './UploadModal.css';
+import Button from '../Button/Button';
 
 const UploadModal = ({ onClose }) => {
   const cloudName = import.meta.env.VITE_CLOUD_NAME;
@@ -215,9 +216,7 @@ const UploadModal = ({ onClose }) => {
             </div>
           </fieldset>
 
-          <button className="submit-btn" type="submit">
-            Upload
-          </button>
+          <Button text="Upload" />
         </form>
       </div>
     </div>
