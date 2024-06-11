@@ -9,11 +9,10 @@ import {
 import { useState } from 'react';
 import UploadModal from '../UploadModal/UploadModal';
 
-function Sidebar() {
+function Sidebar({ onMenuClick }) {
   //TODO: Add functionality to see (1) galleries by item type (2) liked outfits
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const handleAddItemClick = () => {
     setIsModalOpen(true);
   };
@@ -25,14 +24,16 @@ function Sidebar() {
   return (
     <>
       <div className="sidebar-nav">
-        <h1 className="sidebar-title">OutFitMe</h1>
-        <button className="sidebar-icon">
+        <h1 className="sidebar-title" onClick={() => onMenuClick('')}>
+          OutFitMe
+        </h1>
+        <button className="sidebar-icon" onClick={() => onMenuClick('top')}>
           <PiTShirt />
         </button>
-        <button className="sidebar-icon">
+        <button className="sidebar-icon" onClick={() => onMenuClick('bottom')}>
           <PiPants />
         </button>
-        <button className="sidebar-icon">
+        <button className="sidebar-icon" onClick={() => onMenuClick('shoe')}>
           <PiSneaker />
         </button>
 

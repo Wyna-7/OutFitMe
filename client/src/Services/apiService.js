@@ -44,4 +44,15 @@ const getRandomItem = async (item, tempToday, rainToday) => {
 
   return randomItem.imgURL;
 };
-export { addImage, getWeatherData, getRandomItem };
+
+const getAllItemsFromCat = async (item) => {
+  console.log(item);
+  const allItems = await fetch(`${baseURL}/getAllItems/${item}`)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(`${err.message} while all ${item}`);
+    });
+  console.log('apiClient allItems', allItems);
+  return allItems;
+};
+export { addImage, getWeatherData, getRandomItem, getAllItemsFromCat };

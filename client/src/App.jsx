@@ -4,10 +4,16 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import DisplayContainer from './Components/DisplayContainer/DisplayContainer';
 import { getWeatherData } from './Services/apiService';
 import LoginPage from './Components/LoginPage/LoginPage';
+import Gallery from './Components/Gallery/Gallery';
 
 function App() {
   //TODO: Style the page where user accepts to give their location first, have that accept button get weather and random outfit
   // to avoid having to click two buttons
+
+  //GALLERIES
+
+  const [itemType, setItemType] = useState('');
+  const [gallery, setGallery] = useState('');
 
   //WEATHER
   const [weatherData, setWeatherData] = useState({
@@ -85,6 +91,11 @@ function App() {
     });
   };
 
+  const onMenuClick = async (itemType) => {
+    setItemType(itemType);
+    setGallery(itemType);
+  };
+
   return (
     <>
       {!clicked ? (
@@ -92,15 +103,19 @@ function App() {
       ) : (
         <div className="app-container">
           <div className="sidebar">
-            <Sidebar />
+            <Sidebar onMenuClick={onMenuClick} />
           </div>
 
           <div className="display-container">
-            <DisplayContainer
-              weatherData={weatherData}
-              emoji={emoji}
-              name={name}
-            />
+            {!gallery ? (
+              <DisplayContainer
+                weatherData={weatherData}
+                emoji={emoji}
+                name={name}
+              />
+            ) : (
+              <Gallery itemType={itemType} />
+            )}
           </div>
         </div>
       )}

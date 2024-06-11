@@ -36,3 +36,25 @@ exports.getRandomItem = async (ctx) => {
     ctx.throw(500, 'Something went wrong getting the pictures');
   }
 };
+
+exports.getAllItems = async (ctx) => {
+  const { item } = ctx.params;
+  try {
+    const allItems = await Image.find({
+      item: item,
+    });
+
+    if (allItems) {
+      ctx.body = allItems;
+      ctx.status = 200;
+      return;
+    } else {
+      ctx.throw(404, 'No clothing items found for this category');
+    }
+  } catch (error) {
+    ctx.throw(
+      500,
+      'Something went wrong getting the clothing items for this category'
+    );
+  }
+};

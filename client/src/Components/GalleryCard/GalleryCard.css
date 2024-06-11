@@ -1,0 +1,7 @@
+.gallery-item {
+  margin: 3rem;
+  justify-content: center;
+  max-height: 18rem;
+  max-width: 26rem;
+  object-fit: scale-down;
+}
