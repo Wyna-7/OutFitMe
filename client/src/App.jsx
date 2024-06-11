@@ -3,11 +3,9 @@ import { useState, useEffect } from 'react';
 import Sidebar from './Components/Sidebar/Sidebar';
 import DisplayContainer from './Components/DisplayContainer/DisplayContainer';
 import { getWeatherData } from './Services/apiService';
-import Button from './Components/Button/Button';
 import LoginPage from './Components/LoginPage/LoginPage';
 
 function App() {
-  //TODO: Move states, effects and methods to another file?
   //TODO: Style the page where user accepts to give their location first, have that accept button get weather and random outfit
   // to avoid having to click two buttons
 
@@ -60,8 +58,6 @@ function App() {
         const lon = position.coords.longitude;
 
         getWeather(lat, lon);
-
-        console.log(weatherData);
         setClicked(true);
       });
     } else {

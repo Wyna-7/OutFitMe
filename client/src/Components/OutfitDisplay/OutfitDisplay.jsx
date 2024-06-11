@@ -1,11 +1,13 @@
+import {
+  temperatureToWeather,
+  rainToWeather,
+  asyncCallHelper,
+} from '../../Utils/helperFunctions';
 import { useEffect, useState } from 'react';
-import { getRandomItem } from '../../Services/apiService';
 import Button from '../Button/Button';
 import './OutfitDisplay.css';
 
 function OutfitDisplay(weatherData) {
-  //TODO: Move states, effects and methods to another file?
-
   //state to set imgURL's in display
   const [outfit, setOutfit] = useState({
     top: 'https://www.creativefabrica.com/wp-content/uploads/2020/04/21/Tshirt-icon-black-thin-stripe-2-Graphics-3920769-1-1-580x386.jpg',
@@ -14,7 +16,7 @@ function OutfitDisplay(weatherData) {
     shoe: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Running_shoe_icon.png/640px-Running_shoe_icon.png',
   });
 
-  //state to gather and send current weather info as params in request URL
+  //state to gather and send current weather info as params in request URLs
   const [weatherToday, setWeatherToday] = useState({
     tempToday: '',
     rainToday: '',
@@ -29,33 +31,12 @@ function OutfitDisplay(weatherData) {
   const gatherWeather = () => {
     const weatherDataTemp = weatherData.weatherData.temp;
     const weatherDataDescription = weatherData.weatherData.description;
-
-    //TODO: Replace if statements with ONE function to map data, put it in a utilities file
-    if (weatherDataTemp <= 10) {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'cold' }));
-    } else if (weatherDataTemp <= 18) {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'cool' }));
-    } else if (weatherDataTemp <= 25) {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'warm' }));
-    } else {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, tempToday: 'hot' }));
-    }
-
-    if (
-      weatherDataDescription === 'Thunderstorm' ||
-      weatherDataDescription === 'Drizzle' ||
-      weatherDataDescription === 'Rain' ||
-      weatherDataDescription === 'Snow'
-    ) {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: false }));
-    } else {
-      setWeatherToday((prevWeather) => ({ ...prevWeather, rainToday: true }));
-    }
+    setWeatherToday({
+      rainToday: rainToWeather(weatherDataDescription),
+      tempToday: temperatureToWeather(weatherDataTemp),
+    });
   };
 
-  const asyncCallHelper = async (item, tempToday, rainToday) => {
-    return await getRandomItem(item, tempToday, rainToday);
-  };
   //once weatherdata is correctly set, make requests and set outfit data
   useEffect(() => {
     if (weatherToday.tempToday === '' || weatherToday.rainToday === '') return;

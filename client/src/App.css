@@ -19,10 +19,8 @@ body,
   grid-area: 1/ 1 / 7 / 1;
   height: 100vh;
   background: black;
-  margin-right: 5rem;
 }
 
 .display-container {
-  grid-area: 1/ 2 / 7 / 10;
-  margin-left: 5rem;
+  grid-area: 1/ 2 / 7 / 11;
 }
