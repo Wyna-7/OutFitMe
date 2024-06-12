@@ -15,6 +15,7 @@ exports.postImage = async (ctx) => {
 
 //uses params to dynamically return ONE image that meets the criteria for the day's weather
 exports.getRandomItem = async (ctx) => {
+  console.log(ctx.params);
   const { item, tempToday, rainToday } = ctx.params;
   try {
     const allItems = await Image.find({
@@ -44,7 +45,7 @@ exports.getAllItems = async (ctx) => {
       item: item,
     });
 
-    if (allItems) {
+    if (allItems != []) {
       ctx.body = allItems;
       ctx.status = 200;
       return;

@@ -2,13 +2,7 @@ import './LoginPage.css';
 import Button from '../Button/Button';
 import { useState } from 'react';
 
-function LoginPage({ getLocation }) {
-  const [name, setName] = useState('');
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-
+function LoginPage({ getLocation, handleName, name }) {
   return (
     <>
       <div className="login-container">

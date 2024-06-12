@@ -2,26 +2,25 @@
   background-color: rgb(226, 232, 232);
   border: solid black;
   border-radius: 10px;
-  width: 80rem;
-  min-height: 40rem;
-  height: fit-content;
+  width: 950px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   box-shadow: 1px 2px 3px 0 rgba(68, 66, 66, 0.054);
+  padding: 1rem;
 }
 
 .random-outfit {
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-evenly;
 }
 .clothing-item {
-  max-height: 17rem;
-  max-width: 17rem;
+  max-height: 13rem;
+  max-width: 13rem;
   background-color: white;
   border: thick solid grey;
 }

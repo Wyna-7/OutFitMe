@@ -16,9 +16,12 @@ function Gallery({ itemType }) {
   return (
     <>
       <div className="gallery">
-        {itemGallery.map((item) => (
-          <GalleryCard key={item._id} source={item.imgURL} />
-        ))}
+        <h1 className="gallery-title">{itemType.toUpperCase()}</h1>
+        <div className="gallery-items">
+          {itemGallery.map((item) => (
+            <GalleryCard key={item._id} source={item.imgURL} />
+          ))}
+        </div>
       </div>
     </>
   );

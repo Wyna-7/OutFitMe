@@ -1,7 +1,12 @@
 .gallery-item {
-  margin: 3rem;
+  max-height: 13rem;
+  max-width: 13rem;
+  background-color: white;
+  border: thick solid grey;
+  margin: 2rem;
+  /* margin: 3rem;
   justify-content: center;
   max-height: 18rem;
   max-width: 26rem;
-  object-fit: scale-down;
+  object-fit: scale-down; */
 }

@@ -2,13 +2,13 @@
   background-color: rgb(226, 232, 232);
   border: solid black;
   border-radius: 10px;
-  width: 30rem;
-  height: 34rem;
+  width: 350px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-content: center;
   justify-content: space-evenly;
-  padding: 3rem;
+  padding: 1rem;
 }
 
 .apidata {

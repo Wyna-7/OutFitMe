@@ -10,10 +10,8 @@ function App() {
   //TODO: Style the page where user accepts to give their location first, have that accept button get weather and random outfit
   // to avoid having to click two buttons
 
-  //GALLERIES
-
-  const [itemType, setItemType] = useState('');
-  const [gallery, setGallery] = useState('');
+  //NAME
+  const [name, setName] = useState('');
 
   //WEATHER
   const [weatherData, setWeatherData] = useState({
@@ -29,6 +27,18 @@ function App() {
   const [emoji, setEmoji] = useState('');
   const [clicked, setClicked] = useState(false);
 
+  //GALLERIES
+  const [itemType, setItemType] = useState('');
+  const [gallery, setGallery] = useState('');
+
+  ////////////////////////////////////////////////////////////////////////////
+
+  //NAME
+  const handleName = (event) => {
+    setName(event.target.value);
+  };
+
+  //WEATHER
   useEffect(() => {
     if (weatherData.description === '') return;
 
@@ -91,6 +101,7 @@ function App() {
     });
   };
 
+  //GALLERIES
   const onMenuClick = async (itemType) => {
     setItemType(itemType);
     setGallery(itemType);
@@ -99,7 +110,11 @@ function App() {
   return (
     <>
       {!clicked ? (
-        <LoginPage getLocation={getLocation} />
+        <LoginPage
+          getLocation={getLocation}
+          name={name}
+          handleName={handleName}
+        />
       ) : (
         <div className="app-container">
           <div className="sidebar">
@@ -123,36 +138,3 @@ function App() {
   );
 }
 export default App;
-{
-  /*
-        The app will have a static navbar on top with the app name.
-        When clicking the app name, the side bar will open:
-          - button to see all tops & delete pictures
-          - button to see all bottoms & delete pictures
-          - button to see all shoes & delete pictures
-          - button to see all liked outfits
-          !!MVP FEATURE button to add a new clothing item MVP FEATURE!!
-            This button should open a modal/cloudinary widget to upload a new picture
-            & select it's required metadata. Pic will go to cloudinary, and its returned URL
-            and metadata will go to mongoDB:
-              - type of clothing item (top, bottom, shoe)
-              - temperature range (allow to select multiple):
-                  - cold, less than 10ºC
-                  - cool, 10ºC-18ºC
-                  - warm, 18ºC-25ºC
-                  - hot, more than 25ºC
-              - apt for rain or not (true/false)
-        */
-}
-{
-  /* 
-        Should this be named Dashboard instead? IDK
-        Main app container will have a static weather display, and
-        a dynamic display for:
-          !!MVP FEATURE randomized outfit MVP FEATURE!!
-          - see tops gallery
-          - see bottoms gallery
-          - see shoes gallery
-          - see liked outfits gallery
-        */
-}
