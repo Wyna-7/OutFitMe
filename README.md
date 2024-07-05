@@ -1,13 +1,22 @@
 # OutFitMe
-Digital closet & weather appropriate outfit generator.
 
-## What is it?
-
+Your new digital closet & weather appropriate outfit generator.
 OutFitMe is an application that allows users to upload pictures of their clothes, tagging them according to type and optimal weather use (temperature range, rain appropriate or not, type of item).
 The users can open the app and click a button to generate an outfit with clothes appropriate for the day’s forecast. In the same display as the outfit randomizer, there is a live weather display for the user's location. 
 Additionally, the sidebar clothing icons display galleries with all items of that specific type that the user has uploaded.
 
-## How to get the app to work?
+![image](https://github.com/Wyna-7/OutFitMe/assets/155622909/823fd043-ca08-4d0c-af53-a23319017d16)
+
+![image](https://github.com/Wyna-7/OutFitMe/assets/155622909/0fa264aa-a9b5-4e22-b833-113674ec9abb)
+
+![image](https://github.com/Wyna-7/OutFitMe/assets/155622909/8fcb612c-61b8-4af0-935c-c3ea85998aa4)
+
+![image](https://github.com/Wyna-7/OutFitMe/assets/155622909/83b8957b-5d23-431f-8153-b82d88086a9e)
+
+![image](https://github.com/Wyna-7/OutFitMe/assets/155622909/174949eb-b4f0-47cd-924e-ee84ccf1953d)
+
+
+## Getting started
 
 In order to get OutFitMe to work, there are two external services that need to be connected to the app. You will need to gather their information and store it in a .env file:
 
@@ -36,6 +45,29 @@ VITE_CLOUDINARY_API_SECRET=placeholder
 VITE_OPENWEATHER_API_NAME=placeholder
 VITE_OPENWEATHER_API_KEY=placeholder
 ```
+
+Now .env file is complete, and MongoDB is running on your computer, navigate to the *server* folder and run this command:
+```
+nodemon
+```
+You should see the following lines in your terminal:
+```
+🚀 Server running on 3000
+🎃 Succesfully connected to outfitme on port 27017!
+```
+Then, navigate to the *client* folder and run this command:
+```
+npm run dev
+```
+OutFitMe is now running on your computer! Upload some clothing items, and start generating your outfits for the day :)
+
+## Tech stack
+- Front End: [React](https://react.dev/) & [Vite](https://vitejs.dev/)
+- Back End: [Node.js](https://nodejs.org/en) & [Koa](https://koajs.com/) 
+- Databases: [MongoDB](https://www.mongodb.com/) with [mongoose](https://mongoosejs.com/) & [Cloudinary](https://cloudinary.com/)
+- Styling: [React-icons](https://react-icons.github.io/react-icons/) 
+- APIs: [OpenWeather](https://openweathermap.org/)
+
 ## Future features
 - Save full outfit as favorite, make all favorite outfits visible in a gallery by clicking the heart icon. Outfits should have a delete option from their gallery.
 - Delete clothing items from gallery view (this should remove them form cloudinary and db simultaneously).
